@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
+const { checkDestination } = require("../functions/checkDestination");
 const { yargs } = require("../functions/yargs");
 
 const args = yargs();
 
-console.log({ args });
+checkDestination();
