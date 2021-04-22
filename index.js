@@ -14,7 +14,7 @@ const rimraf = require("rimraf");
 const { directory, name, repo, keywords } = yargs();
 
 withPrettyError(() => {
-  if (!/^[-@a-z0-9]+$/.test(name)) {
+  if (!/^[-@a-z0-9\/]+$/.test(name)) {
     throw new Error(`invalid project name "${name}"`);
   }
   if (
