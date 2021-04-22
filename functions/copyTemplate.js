@@ -14,7 +14,9 @@ exports.copyTemplate = (template, destination, { name, description }) => {
   fse.copySync(template, destination);
   writeFileSync(path.join(destination, ".gitignore"), gitIgnore + "\n");
 
-  const readme = readFileSync(path.join(destination, "README.md"));
+  const readme = readFileSync(path.join(destination, "README.md")).toString(
+    "utf8"
+  );
   writeFileSync(
     path.join(destination, "README.md"),
     readme
