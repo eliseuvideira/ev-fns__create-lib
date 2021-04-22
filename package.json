@@ -1,6 +1,6 @@
 {
   "name": "@ev-fns/create-lib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "bin/create-lib",
   "bin": "bin/create-lib",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
