@@ -1,8 +1,16 @@
-const { existsSync, statSync, mkdirSync, readdirSync } = require("fs");
+const {
+  existsSync,
+  statSync,
+  mkdirSync,
+  readdirSync,
+  unlinkSync,
+  rmdirSync,
+} = require("fs");
+const { isGitRepo } = require("./isGitRepo");
 
 const createDirectoryIfNotExists = dir => {
-  if (!existsSync(destination)) {
-    mkdirSync(destination);
+  if (!existsSync(dir)) {
+    mkdirSync(dir);
   }
 };
 
@@ -23,6 +31,13 @@ exports.checkDestination = destination => {
   if (!isEmpty(destination)) {
     throw new Error(
       `invalid destination ${destination}, directory is not empty`
+    );
+  }
+
+  if (isGitRepo(destination)) {
+    rmdirSync(destination);
+    throw new Error(
+      `invalid destination ${destination}, directory already has git initialized`
     );
   }
 };
