@@ -11,7 +11,7 @@ const { installPackages } = require("./functions/installPackages");
 const { commitProject } = require("./functions/commitProject");
 const rimraf = require("rimraf");
 
-const { directory, name, repo, keywords } = yargs();
+const { directory, name, repo, keywords, description } = yargs();
 
 withPrettyError(() => {
   if (!/^[-@a-z0-9\/]+$/.test(name)) {
@@ -41,7 +41,7 @@ withPrettyError(() => {
 
     const { author } = require(path.join(DESTINATION, "package.json"));
 
-    copyTemplate(TEMPLATE, DESTINATION);
+    copyTemplate(TEMPLATE, DESTINATION, { name, description });
 
     createPackageJson(DESTINATION, { name, repo, keywords, author });
 
@@ -49,7 +49,7 @@ withPrettyError(() => {
 
     commitProject(DESTINATION);
   } catch (err) {
-    // rimraf.sync(DESTINATION);
+    rimraf.sync(DESTINATION);
     throw err;
   }
 });

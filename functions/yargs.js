@@ -27,6 +27,10 @@ exports.yargs = () =>
       demandOption: true,
       requiresArg: true,
     })
+    .option("desc", {
+      type: "string",
+      describe: "description",
+    })
     .option("keywords", {
       describe: "keywords",
       array: true,
